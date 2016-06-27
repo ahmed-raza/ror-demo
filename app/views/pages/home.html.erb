@@ -1,3 +1,4 @@
 <h1>Welcome <%= current_user.full_name %></h1>
+<em><%= current_user.gender %></em>
 <%= link_to "Edit profile", edit_user_registration_path %>
 <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
