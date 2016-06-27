@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
 
+  has_one :attachment, as: :attachable, dependent: :destroy
+
   GENDER = ["Male", "Female"]
 
   def full_name
