@@ -1,4 +1,26 @@
 <h1>Welcome <%= current_user.full_name %></h1>
-<em><%= current_user.gender %></em>
-<%= link_to "Edit profile", edit_user_registration_path %>
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+<div class="profile-picture">
+  <%= image_tag current_user.profile_picture(:medium) %>
+</div>
+<div class="email">
+  <strong>Email: </strong><em><%= mail_to current_user.email %></em>
+</div>
+<div class="gender">
+  <strong>Gender: </strong><em><%= current_user.gender %></em>
+</div>
+<div class="dob">
+  <strong>Date of birth: </strong><em><%= current_user.birth_date.to_formatted_s(:long) %></em>
+</div>
+<div class="age">
+  <strong>Age: </strong><em><%= current_user.age %></em>
+</div>
+<div class="member-since">
+  <strong>Member since: </strong><em><%= time_ago_in_words(current_user.created_at) %></em>
+</div>
+<div class="last-seen">
+  <strong>Last seen: </strong><em><%= current_user.last_sign_in_at.to_formatted_s(:short) %></em>
+</div>
+<div class="actions">
+  <%= link_to "Edit profile", edit_user_registration_path %>
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+</div>
