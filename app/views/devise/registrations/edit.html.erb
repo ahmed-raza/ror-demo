@@ -15,7 +15,7 @@
 
   <div class="field">
     <p><%= image_tag resource.profile_picture(:thumb) %></p>
-    <%= f.fields_for :attachment, Attachment.new do |image_form| %>
+    <%= f.fields_for :attachment, attachment(resource) do |image_form| %>
       <%= image_form.file_field :image %>
     <% end %>
   </div>
