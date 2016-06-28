@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/galetahub/ckeditor.git
+  revision: 93c1b19ddb745c5bcad3a239438c229fab0b6e57
+  specs:
+    ckeditor (4.1.6)
+      cocaine
+      orm_adapter (~> 0.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -170,6 +178,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  ckeditor!
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)
