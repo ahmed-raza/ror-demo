@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627114430) do
+ActiveRecord::Schema.define(version: 20160628162026) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "image_file_name",    limit: 255
@@ -25,6 +25,36 @@ ActiveRecord::Schema.define(version: 20160627114430) do
   end
 
   add_index "attachments", ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id", using: :btree
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",    limit: 255, null: false
+    t.string   "data_content_type", limit: 255
+    t.integer  "data_file_size",    limit: 4
+    t.string   "data_fingerprint",  limit: 255
+    t.integer  "assetable_id",      limit: 4
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width",             limit: 4
+    t.integer  "height",            limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "movies", force: :cascade do |t|
+    t.string   "title",        limit: 255
+    t.text     "description",  limit: 65535
+    t.text     "trailer_url",  limit: 65535
+    t.string   "genre",        limit: 255
+    t.integer  "duration",     limit: 4
+    t.boolean  "featured"
+    t.boolean  "approved"
+    t.date     "release_date"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             limit: 50
