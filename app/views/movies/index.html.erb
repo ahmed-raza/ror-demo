@@ -6,4 +6,5 @@
 
 <% @movies.each do |movie| %>
   <h2><%= link_to movie.title, movie %></h2>
+  <%= link_to "Delete", movie, method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>

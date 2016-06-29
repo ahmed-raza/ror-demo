@@ -1,4 +1,4 @@
-<%= form_for(@movie) do |f| %>
+<%= nested_form_for @movie,:html => { :multipart => true } do |f| %>
   <% if @movie.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
@@ -42,6 +42,21 @@
   <div class="field">
     <%= f.label :release_date %><br>
     <%= f.date_select :release_date %>
+  </div>
+  <div class="field">
+    <%= f.fields_for :attachments do |attachment| %>
+      <% if attachment.object.new_record? %>
+        <%= attachment.file_field :image %>
+        <%= attachment.link_to_remove "Remove item" %>
+      <% else %>
+        <% @movie.attachments.each do |attachment_poster| %>
+          <%= image_tag attachment_poster.image.url(:thumb) %>
+          <%= attachment_poster.hidden_field :_destroy %>
+          <%= attachment_poster.link_to_remove "X" %>
+          <% end %>
+      <% end %>
+    <% end %>
+    <%= f.link_to_add "Add item", :attachments %>
   </div>
   <div class="actions">
     <%= f.submit %>
